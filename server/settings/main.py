@@ -145,6 +145,13 @@ class PublishedProductModel(BaseSettingsModel):
     )
 
 
+class ReviewLayersModel(BaseSettingsModel):
+    review_layers: list[str] = SettingsField(
+        default_factory=list,
+        title="Review layers"
+    )
+    
+
 class OCIOCustomVariableModel(BaseSettingsModel):
     _layout = "expanded"
     var_name: str = SettingsField("", title="Variable name")
