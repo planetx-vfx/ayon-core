@@ -88,3 +88,6 @@ poetry.lock
 
 # ignore mkdocs build
 site/
+
+# opencode json
+opencode.json

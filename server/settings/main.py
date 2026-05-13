@@ -150,6 +150,12 @@ class ReviewLayersModel(BaseSettingsModel):
         default_factory=list,
         title="Review layers"
     )
+    
+
+class OCIOCustomVariableModel(BaseSettingsModel):
+    _layout = "expanded"
+    var_name: str = SettingsField("", title="Variable name")
+    value: str = SettingsField("", title="Anatomy template key")
 
 
 class CoreImageIOConfigProfilesModel(BaseSettingsModel):
@@ -187,6 +193,11 @@ class CoreImageIOConfigProfilesModel(BaseSettingsModel):
         "",
         title="OCIO config path",
         description="Path to OCIO config. Anatomy formatting is supported.",
+    )
+    custom_variables: list[OCIOCustomVariableModel] = SettingsField(
+        default_factory=list,
+        title="Custom variables",
+        description="Variables to set in OCIO context. Resolved top-down."
     )
     published_product: PublishedProductModel = SettingsField(
         default_factory=PublishedProductModel,
@@ -387,6 +398,7 @@ DEFAULT_VALUES = {
                 "type": "builtin_path",
                 "builtin_path": "{BUILTIN_OCIO_ROOT}/aces_1.2/config.ocio",
                 "custom_path": "",
+                "custom_variables": [],
                 "published_product": {
                     "product_name": "",
                     "fallback": {
